@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\MasterBarangModel;
 
 class MasterBarangController extends Controller
 {
     public function index()
     {
-        return view('master/barang/index');
+        //proses ambil data dari mysql
+        $barang = MasterBarangModel::all();
+        return view('master/barang/index', compact('barang'));
     }
 
     /**
