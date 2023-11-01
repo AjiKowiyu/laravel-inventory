@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MasterBarangModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class MasterBarangController extends Controller
 {
@@ -24,23 +25,42 @@ class MasterBarangController extends Controller
 
     public function store(Request $request)
     {
+        $aturan = [
+            'html_kode' => 'required|min:3|max:7|alpha_dash',
+            'html_nama' => 'required|min:10|max:25',
+            'html_deskripsi' => 'max:255',
+        ];
+        $pesan_indo = [
+            'required' => 'Wajib diisi bos!!',
+            'min' => 'Minimal :min karakter!!',
+        ];
+        $validator = Validator::make($request->all(), $aturan, $pesan_indo);
         try {
-            $insert = MasterBarangModel::create([
-                'kode'              => $request->html_kode,
-                'nama'              => $request->html_nama,
-                'deskripsi'         => $request->html_deskripsi,
-                'id_kategori'       => null,
-                'id_gudang'         => null,
-                'dibuat_kapan'      => date('Y-m-d H:i:s'),
-                'dibuat_oleh'       => Auth::user()->id,
-                'diperbarui_kapan'  => null,
-                'diperbarui_oleh'   => null,
-            ]);
-            //jika proses insert berhasil
-            if ($insert) {
+            //jika inputan user tidak sesuai dengan aturan validasi
+            if ($validator->fails()) {
                 return redirect()
-                ->route('master-barang')
-                ->with('success', 'Berhasil menambahkan barang baru!');
+                ->route('master-barang-tambah')
+                ->withErrors($validator)->withInput();
+            } else {
+                //jika inputan user sesuai
+                //simpan ke database
+                $insert = MasterBarangModel::create([
+                    'kode'              => $request->html_kode,
+                    'nama'              => $request->html_nama,
+                    'deskripsi'         => $request->html_deskripsi,
+                    'id_kategori'       => null,
+                    'id_gudang'         => null,
+                    'dibuat_kapan'      => date('Y-m-d H:i:s'),
+                    'dibuat_oleh'       => Auth::user()->id,
+                    'diperbarui_kapan'  => null,
+                    'diperbarui_oleh'   => null,
+                ]);
+                //jika proses insert berhasil
+                if ($insert) {
+                    return redirect()
+                    ->route('master-barang')
+                    ->with('success', 'Berhasil menambahkan barang baru!');
+                }
             }
         }
         catch (\Throwable $th) {
