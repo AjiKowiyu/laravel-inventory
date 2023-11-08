@@ -3,7 +3,8 @@
 
 <h1>Stok Masuk</h1>
 <hr>
-<form action="#" method="post">
+<form action="{{ route('stok-in') }}" method="post">
+    @csrf
     <div class="row mb-4">
         <div class="col-lg-6">
             <label class="form-label h5">Barang</label>

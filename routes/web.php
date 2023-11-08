@@ -82,3 +82,7 @@ Route::get('/master/gudang', [MasterGudangController::class, 'index'])
 Route::get('/stok-masuk', [StokController::class, 'form_stok_masuk'])
     ->name('stok-masuk')
     ->middleware('auth');
+
+Route::post('/stok-in', [StokController::class, 'proses_stok_masuk'])
+    ->name('stok-in')
+    ->middleware('auth');
