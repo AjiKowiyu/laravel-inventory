@@ -110,7 +110,8 @@ class StokController extends Controller
             if ($validator->fails()) {
                 return redirect()
                 ->route('stok-keluar')
-                ->withErrors($validator)->withInput();
+                ->withInput()
+                ->withErrors($validator);
             } else {
                 //jika inputan user sesuai
                 //simpan ke database
@@ -129,6 +130,7 @@ class StokController extends Controller
                     if ($request->form_jumlah_keluar > $stok_sisa) {
                         return redirect()
                         ->route('stok-keluar')
+                        ->withInput()
                         ->with('danger', 'Jumlah yang dikeluarkan melebihi stok yang ada');
                         die;
                     }
@@ -138,6 +140,7 @@ class StokController extends Controller
                         if ($request->form_jumlah_keluar <= 0) {
                             return redirect()
                             ->route('stok-keluar')
+                            ->withInput()
                             ->with('danger', 'Jumlah minimal barang yg bisa keluar adalah 1');
                             die;
                         }
@@ -167,6 +170,7 @@ class StokController extends Controller
                     //jika tidak ada sisa
                     return redirect()
                     ->route('stok-keluar')
+                    ->withInput()
                     ->with('danger', 'Barang belum ada stok sama sekali');
                     die;
                 }
@@ -175,6 +179,7 @@ class StokController extends Controller
         catch (\Throwable $th) {
             return redirect()
             ->route('stok-keluar')
+            ->withInput()
             ->with('danger', $th->getMessage());
         }
     }

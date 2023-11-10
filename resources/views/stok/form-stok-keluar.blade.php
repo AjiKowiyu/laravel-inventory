@@ -11,7 +11,7 @@
             <select class="form-select" name="form_barang">
                 <option selected>Pilih barang</option>
                 @foreach ($barang as $b)
-                    <option value="{{ $b->kode }}">{{ $b->kode }} | {{ $b->nama }}</option>
+                    <option value="{{ $b->kode }}" {{ (old('form_barang') == $b->kode) ? 'selected' : '' }}>{{ $b->kode }} | {{ $b->nama }}</option>
                 @endforeach
             </select>
         </div>
@@ -19,7 +19,7 @@
     <div class="row mb-4">
         <div class="col-lg-2">
             <label class="form-label h5">Jumlah</label>
-            <input type="number" name="form_jumlah_keluar" class="form-control">
+            <input type="number" name="form_jumlah_keluar" class="form-control" value="{{ old('form_jumlah_keluar') }}">
         </div>
     </div>
     <div class="row">
