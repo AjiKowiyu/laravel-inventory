@@ -83,4 +83,11 @@ class StokController extends Controller
             ->with('danger', $th->getMessage());
         }
     }
+
+
+    function form_stok_keluar()
+    {
+        $barang = MasterBarangModel::where('status', 1)->get();
+        return view('stok/form-stok-keluar', compact('barang'));
+    }
 }
