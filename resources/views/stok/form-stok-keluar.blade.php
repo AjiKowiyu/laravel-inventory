@@ -3,7 +3,7 @@
 
 <h1>Stok Keluar</h1>
 <hr>
-<form action="{{ route('stok-in') }}" method="post">
+<form action="{{ route('stok-out') }}" method="post">
     @csrf
     <div class="row mb-4">
         <div class="col-lg-6">
@@ -19,7 +19,7 @@
     <div class="row mb-4">
         <div class="col-lg-2">
             <label class="form-label h5">Jumlah</label>
-            <input type="number" name="form_jumlah_masuk" class="form-control">
+            <input type="number" name="form_jumlah_keluar" class="form-control">
         </div>
     </div>
     <div class="row">

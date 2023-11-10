@@ -90,3 +90,7 @@ Route::post('/stok-in', [StokController::class, 'proses_stok_masuk'])
 Route::get('/stok-keluar', [StokController::class, 'form_stok_keluar'])
     ->name('stok-keluar')
     ->middleware('auth');
+
+Route::post('/stok-out', [StokController::class, 'proses_stok_keluar'])
+    ->name('stok-out')
+    ->middleware('auth');
