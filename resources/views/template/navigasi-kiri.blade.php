@@ -22,6 +22,11 @@
                 <div class="sb-nav-link-icon"><i class="fa-solid fa-dolly"></i></div>
                 Stok Keluar
             </a>
+            <a class="nav-link {{ (Request::segment(1) == 'account-management') ? 'active' : '' }}" 
+            href="{{ route('account-management') }}">
+                <div class="sb-nav-link-icon"><i class="fa-solid fa-users-gear"></i></div>
+                Account Management
+            </a>
         </div>
     </div>
     <div class="sb-sidenav-footer">
