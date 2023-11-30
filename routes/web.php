@@ -97,11 +97,16 @@ Route::post('/stok-out', [StokController::class, 'proses_stok_keluar'])
     ->name('stok-out')
     ->middleware('auth');
 
-Route::get('/account-management', [AccountController::class, 'index'])
+Route::get('/account', [AccountController::class, 'index'])
     ->name('account-management')
     ->middleware('auth');
 
 
-Route::get('/account-role', [AccountRoleController::class, 'index'])
+Route::get('/account/role', [AccountRoleController::class, 'index'])
     ->name('account-role')
+    ->middleware('auth');
+
+Route::get('/account/role/{id}', [AccountRoleController::class, 'show'])
+    ->name('account-role-detail')
+    ->where('id', '[0-9]+')
     ->middleware('auth');

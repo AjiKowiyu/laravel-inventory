@@ -28,16 +28,16 @@
                 <td>{{ $r->kode }}</td>
                 <td>{{ $r->nama }}</td>
                 <td>
-                    <a href="" 
-                        class="btn btn-sm btn-success rounded-circle">
+                    <a href="{{ route('account-role-detail', ['id' => $r->id]) }}" 
+                        class="btn btn-sm btn-outline-success rounded-circle">
                         <i class="fa fa-solid fa-eye"></i>
                     </a>
                     <a href="" 
-                        class="btn btn-sm btn-warning rounded-circle">
+                        class="btn btn-sm btn-outline-secondary rounded-circle">
                         <i class="fa fa-solid fa-pencil"></i>
                     </a>
                     <a href="" 
-                        class="btn btn-sm btn-danger rounded-circle"
+                        class="btn btn-sm btn-outline-danger rounded-circle"
                         onclick="return confirm('Apakah anda yakin ingin hapus ?')">
                         <i class="fa fa-solid fa-trash"></i>
                     </a>
