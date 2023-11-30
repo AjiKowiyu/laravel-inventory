@@ -8,6 +8,7 @@ use App\Http\Controllers\MasterKategoriController;
 use App\Http\Controllers\MasterGudangController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AccountRoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -98,4 +99,9 @@ Route::post('/stok-out', [StokController::class, 'proses_stok_keluar'])
 
 Route::get('/account-management', [AccountController::class, 'index'])
     ->name('account-management')
+    ->middleware('auth');
+
+
+Route::get('/account-role', [AccountRoleController::class, 'index'])
+    ->name('account-role')
     ->middleware('auth');
