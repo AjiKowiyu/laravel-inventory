@@ -1,7 +1,7 @@
-@extends('master/all')
-@section('master-konten')
+@extends('account/all')
+@section('account-konten')
 
-<h1>Detail barang</h1>
+<h1>Detail role</h1>
 @if (isset($role[0]))
     @php
         //konversi tanggal format sql menjadi gampang dibaca oleh manusia
