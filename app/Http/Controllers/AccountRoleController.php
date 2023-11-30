@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class AccountRoleController extends Controller
@@ -9,7 +10,8 @@ class AccountRoleController extends Controller
 
     public function index()
     {
-        return view('account/role/index');
+        $role = Role::all();
+        return view('account/role/index', compact('role'));
     }
 
 

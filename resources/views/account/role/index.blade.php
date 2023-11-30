@@ -14,8 +14,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Kode</th>
-            <th scope="col">Nama Barang</th>
-            <th scope="col">Deskripsi</th>
+            <th scope="col">Nama Role/Peran</th>
             <th scope="col">Pilihan</th>
         </tr>
     </thead>
@@ -23,12 +22,11 @@
         @php
             $i = 1;
         @endphp
-        {{-- @foreach ($barang as $b) --}}
+        @foreach ($role as $r)
             <tr>
                 <th scope="row">{{ $i++ }}</th>
-                <td>{{-- $b->kode --}}</td>
-                <td>{{-- $b->nama --}}</td>
-                <td>{{-- $b->deskripsi --}}</td>
+                <td>{{ $r->kode }}</td>
+                <td>{{ $r->nama }}</td>
                 <td>
                     <a href="" 
                         class="btn btn-sm btn-success rounded-circle">
@@ -45,7 +43,7 @@
                     </a>
                 </td>
             </tr>
-        {{-- @endforeach --}}
+        @endforeach
     </tbody>
 </table>
 
